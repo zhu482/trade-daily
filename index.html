@@ -1,638 +1,347 @@
-```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>铣刀外贸行业日报 · 2026年03月17日</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贝塞尔外贸情报 | AI驱动的每日情报系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080808;
+            --surface: #111111;
+            --surface2: #1a1a1a;
+            --border: #232323;
+            --border2: #2e2e2e;
+            --text: #ffffff;
+            --text2: #888888;
+            --text3: #555555;
+            --gold: #F59E0B;
+            --gold2: #D97706;
+            --gold-glow: rgba(245,158,11,0.15);
+            --gold-glow2: rgba(245,158,11,0.08);
+            --trans: all 0.25s cubic-bezier(.4,0,.2,1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .glow-orb {
+            position: absolute;
+            top: -120px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 500px;
+            background: radial-gradient(ellipse, rgba(245,158,11,0.12) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
 
-    :root {
-      --red: #c0392b;
-      --red-dark: #96281b;
-      --red-light: #f9e8e6;
-      --red-mid: #e8c4c0;
-      --gray-dark: #2c2c2c;
-      --gray-mid: #555;
-      --gray-light: #f5f5f5;
-      --border: #e0e0e0;
-      --white: #fff;
-      --shadow: 0 2px 12px rgba(0,0,0,0.08);
-      --shadow-hover: 0 6px 24px rgba(192,57,43,0.15);
-    }
+        /* Nav */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--border); }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+        .logo-mark { width: 28px; height: 28px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 0 16px var(--gold-glow); flex-shrink: 0; }
+        .logo-en { font-size: .7rem; color: var(--text2); font-weight: 400; letter-spacing: .04em; }
+        .nav-btn { background: var(--surface); color: var(--text); border: 1px solid var(--border2); padding: 9px 20px; border-radius: 8px; font-size: .88rem; font-weight: 500; cursor: pointer; font-family: inherit; transition: var(--trans); }
+        .nav-btn:hover { background: var(--surface2); border-color: #444; }
 
-    body {
-      font-family: 'Noto Sans SC', sans-serif;
-      background: #f8f6f5;
-      color: var(--gray-dark);
-      min-height: 100vh;
-    }
+        /* Hero */
+        .hero { padding: 110px 0 72px; text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-glow2); border: 1px solid rgba(245,158,11,0.25); color: var(--gold); font-size: .78rem; font-weight: 500; padding: 5px 14px; border-radius: 100px; margin-bottom: 32px; letter-spacing: .04em; }
+        .badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 2s infinite; }
+        h1 { font-size: clamp(2.8rem, 7vw, 5.2rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 22px; }
+        h1 .line1 { background: linear-gradient(135deg, #ffffff 30%, rgba(255,255,255,0.55)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+        h1 .line2 { background: linear-gradient(135deg, var(--gold) 20%, #fcd34d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+        .hero-sub { font-size: 1.15rem; color: var(--text2); max-width: 560px; line-height: 1.7; margin-bottom: 52px; }
 
-    /* ── Header ── */
-    .header {
-      background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 60%, #e74c3c 100%);
-      color: var(--white);
-      padding: 32px 24px 28px;
-      position: relative;
-      overflow: hidden;
-    }
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -60px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-    }
-    .header::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; left: -30px;
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.04);
-    }
-    .header-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-    .header-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 4px;
-    }
-    .badge {
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 4px;
-      font-size: 11px;
-      font-family: 'Noto Sans SC', sans-serif;
-      font-weight: 500;
-      letter-spacing: 1px;
-      padding: 3px 8px;
-      color: rgba(255,255,255,0.9);
-      text-transform: uppercase;
-    }
-    .header h1 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(22px, 5vw, 32px);
-      font-weight: 700;
-      letter-spacing: 2px;
-      line-height: 1.2;
-    }
-    .header-sub {
-      font-size: 13px;
-      color: rgba(255,255,255,0.75);
-      margin-top: 6px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-    }
+        /* Input */
+        .input-wrap { width: 100%; max-width: 660px; }
+        .input-box { display: flex; gap: 10px; background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 8px 8px 8px 20px; box-shadow: 0 8px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04); transition: border-color .2s, box-shadow .2s; }
+        .input-box:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-glow), 0 8px 40px rgba(0,0,0,.5); }
+        .input-box input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 1rem; font-family: inherit; min-width: 0; }
+        .input-box input::placeholder { color: var(--text3); }
+        .gen-btn { background: var(--gold); color: #000; border: none; border-radius: 8px; padding: 13px 28px; font-size: .95rem; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; transition: var(--trans); box-shadow: 0 0 20px var(--gold-glow); flex-shrink: 0; }
+        .gen-btn:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 4px 28px rgba(245,158,11,0.35); }
+        .gen-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+        .gen-btn.shake { animation: shake .4s ease; }
+        .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+        .tag-hint { font-size: .78rem; color: var(--text3); align-self: center; }
+        .tag { background: rgba(255,255,255,.03); border: 1px solid var(--border2); color: var(--text2); padding: 5px 15px; border-radius: 100px; font-size: .82rem; cursor: pointer; transition: var(--trans); }
+        .tag:hover { color: var(--gold); border-color: rgba(245,158,11,.4); background: var(--gold-glow2); }
 
-    /* ── KPI Cards ── */
-    .kpi-row {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding: 24px 24px 0;
-    }
-    .kpi-card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 18px 16px;
-      box-shadow: var(--shadow);
-      border-top: 3px solid var(--red);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .kpi-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-    }
-    .kpi-label {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--gray-mid);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .kpi-value {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(18px, 3.5vw, 26px);
-      font-weight: 700;
-      color: var(--red);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .kpi-desc {
-      font-size: 12px;
-      color: var(--gray-mid);
-      line-height: 1.5;
-    }
-    .kpi-trend {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 20px;
-      margin-top: 5px;
-    }
-    .trend-up { background: #e8f8e8; color: #1a7a1a; }
-    .trend-down { background: #fde8e6; color: var(--red); }
+        /* Progress */
+        .progress-wrap { width: 100%; max-width: 560px; margin-top: 40px; display: none; }
+        .progress-wrap.visible { display: block; animation: fadeUp .4s ease; }
+        .progress-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+        .progress-header { padding: 18px 24px 14px; border-bottom: 1px solid var(--border); font-size: .8rem; color: var(--text2); letter-spacing: .06em; text-transform: uppercase; }
+        .progress-header span { color: var(--gold); }
+        .step-list { padding: 8px 0; }
+        .step-item { display: flex; align-items: center; gap: 16px; padding: 14px 24px; transition: background .2s; }
+        .step-item.running { background: rgba(245,158,11,.04); }
+        .step-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; border: 1px solid var(--border); color: var(--text3); transition: var(--trans); }
+        .step-item.running .step-icon { background: var(--gold-glow2); border-color: rgba(245,158,11,.4); color: var(--gold); animation: pulse-icon 1.2s ease infinite; }
+        .step-item.done .step-icon { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: #22c55e; }
+        .step-label { font-size: .9rem; color: var(--text2); transition: color .2s; }
+        .step-item.running .step-label { color: var(--text); }
+        .step-item.done .step-label { color: var(--text); }
+        .step-sub { font-size: .75rem; color: var(--text3); margin-top: 2px; }
+        .step-item.running .step-sub { color: var(--gold); }
 
-    /* ── Main ── */
-    .main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+        /* Result */
+        .result-wrap { width: 100%; max-width: 560px; margin-top: 16px; display: none; }
+        .result-wrap.visible { display: block; animation: fadeUp .4s ease; }
+        .result-card { background: linear-gradient(135deg, rgba(245,158,11,.08) 0%, var(--surface) 60%); border: 1px solid rgba(245,158,11,.3); border-radius: 14px; padding: 28px 28px 24px; }
+        .result-title { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; font-weight: 600; margin-bottom: 18px; }
+        .result-check { width: 28px; height: 28px; background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: .85rem; flex-shrink: 0; }
+        .result-url { display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; }
+        .result-url a { flex: 1; color: var(--text2); text-decoration: none; font-size: .85rem; word-break: break-all; }
+        .result-url a:hover { color: var(--gold); }
+        .open-btn { background: var(--gold); color: #000; border: none; border-radius: 6px; padding: 9px 18px; font-size: .85rem; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; transition: var(--trans); flex-shrink: 0; }
+        .open-btn:hover { background: var(--gold2); }
 
-    /* ── Tabs ── */
-    .tab-bar {
-      display: flex;
-      gap: 0;
-      background: var(--white);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 14px 8px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: clamp(12px, 2.5vw, 14px);
-      font-weight: 500;
-      color: var(--gray-mid);
-      position: relative;
-      transition: all 0.25s;
-      letter-spacing: 0.3px;
-    }
-    .tab-btn::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--red);
-      transform: scaleX(0);
-      transition: transform 0.25s;
-    }
-    .tab-btn:hover { background: var(--red-light); color: var(--red); }
-    .tab-btn.active {
-      background: var(--red-light);
-      color: var(--red);
-      font-weight: 700;
-    }
-    .tab-btn.active::after { transform: scaleX(1); }
+        /* Features */
+        .features { padding: 120px 0 80px; position: relative; z-index: 1; }
+        .features-label { text-align: center; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+        .features h2 { text-align: center; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; margin-bottom: 60px; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px 28px; transition: var(--trans); }
+        .feature-card:hover { border-color: rgba(245,158,11,.25); background: var(--surface2); transform: translateY(-3px); }
+        .feature-icon { font-size: 1.8rem; margin-bottom: 18px; }
+        .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -.01em; }
+        .feature-card p { font-size: .88rem; color: var(--text2); line-height: 1.7; }
 
-    /* ── Tab Panels ── */
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
+        footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: .82rem; color: var(--text3); position: relative; z-index: 1; }
+        footer a { color: var(--text3); text-decoration: none; transition: color .2s; }
+        footer a:hover { color: var(--gold); }
 
-    /* ── Section Title ── */
-    .section-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--gray-dark);
-      margin: 24px 0 14px;
-      padding-left: 12px;
-      border-left: 4px solid var(--red);
-      line-height: 1.3;
-    }
-    .section-title:first-child { margin-top: 0; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes pulse-icon { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.92)} }
 
-    /* ── News Card ── */
-    .news-list { display: flex; flex-direction: column; gap: 14px; }
-    .news-card {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
-      border-left: 4px solid transparent;
-      transition: all 0.25s;
-      position: relative;
-    }
-    .news-card:hover {
-      border-left-color: var(--red);
-      box-shadow: var(--shadow-hover);
-      transform: translateX(3px);
-    }
-    .news-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-bottom: 8px;
-    }
-    .tag-global { background: #fff3e0; color: #e65100; }
-    .tag-domestic { background: #e8f5e9; color: #2e7d32; }
-    .tag-material { background: #e3f2fd; color: #1565c0; }
-    .tag-competitor { background: #f3e5f5; color: #6a1b9a; }
-    .tag-exhibition { background: #fce4ec; color: #880e4f; }
-
-    .news-card h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--gray-dark);
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-    .news-card h3 a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .news-card h3 a:hover { color: var(--red); }
-    .news-excerpt {
-      font-size: 13px;
-      color: var(--gray-mid);
-      line-height: 1.7;
-      margin-bottom: 10px;
-    }
-    .news-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .news-source {
-      font-size: 11px;
-      color: var(--red);
-      font-weight: 500;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .news-source::before {
-      content: '🔗';
-      font-size: 10px;
-    }
-    .news-source:hover { text-decoration: underline; }
-
-    /* ── Highlight Box ── */
-    .highlight-box {
-      background: linear-gradient(135deg, var(--red-light), #fff);
-      border: 1px solid var(--red-mid);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin-bottom: 20px;
-    }
-    .highlight-box .highlight-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--red);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .highlight-box ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-    .highlight-box ul li {
-      font-size: 13px;
-      color: var(--gray-dark);
-      padding-left: 16px;
-      position: relative;
-      line-height: 1.6;
-    }
-    .highlight-box ul li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--red);
-      font-size: 11px;
-      top: 3px;
-    }
-
-    /* ── Market Data Grid ── */
-    .data-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-    .data-card {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: transform 0.2s;
-    }
-    .data-card:hover { transform: translateY(-2px); }
-    .data-card .data-num {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--red);
-      margin-bottom: 4px;
-    }
-    .data-card .data-label {
-      font-size: 12px;
-      color: var(--gray-mid);
-      line-height: 1.4;
-    }
-
-    /* ── Post Inspiration ── */
-    .post-section { margin-bottom: 28px; }
-    .post-card {
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .post-card-header {
-      background: linear-gradient(90deg, var(--red), #e74c3c);
-      color: var(--white);
-      padding: 14px 20px;
-      font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .post-card-body { padding: 20px; }
-    .post-template {
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px 18px;
-      font-size: 13.5px;
-      line-height: 1.8;
-      color: var(--gray-dark);
-      white-space: pre-wrap;
-      font-family: 'Noto Sans SC', sans-serif;
-      margin-bottom: 12px;
-    }
-    .post-hint {
-      font-size: 12px;
-      color: var(--gray-mid);
-      line-height: 1.6;
-      padding: 10px 14px;
-      background: var(--red-light);
-      border-radius: 6px;
-      border-left: 3px solid var(--red);
-    }
-    .post-hint strong { color: var(--red); }
-
-    .copy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      border-radius: 6px;
-      padding: 8px 16px;
-      font-size: 12px;
-      font-family: 'Noto Sans SC', sans-serif;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 10px;
-    }
-    .copy-btn:hover { background: var(--red-dark); }
-    .copy-btn.copied { background: #2e7d32; }
-
-    /* ── Exhibition Banner ── */
-    .expo-banner {
-      background: linear-gradient(135deg, #2c3e50, #3d5166);
-      color: var(--white);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .expo-icon {
-      font-size: 32px;
-      flex-shrink: 0;
-    }
-    .expo-content h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .expo-content p {
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.6;
-    }
-    .expo-dates {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .expo-date-chip {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 11px;
-      font-weight: 500;
-    }
-
-    /* ── Divider ── */
-    .divider {
-      height: 1px;
-      background: linear-gradient(to right, var(--red), transparent);
-      margin: 20px 0;
-      opacity: 0.3;
-    }
-
-    /* ── Footer ── */
-    .footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 12px;
-      color: #999;
-      border-top: 1px solid var(--border);
-      background: var(--white);
-      margin-top: 40px;
-    }
-    .footer a {
-      color: var(--red);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .footer a:hover { text-decoration: underline; }
-    .footer-brand {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gray-dark);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
-    ::-webkit-scrollbar-thumb { background: var(--red-mid); border-radius: 3px; }
-
-    /* ── Mobile ── */
-    @media (max-width: 600px) {
-      .kpi-row { grid-template-columns: 1fr; gap: 10px; }
-      .data-grid { grid-template-columns: 1fr; }
-      .tab-btn { font-size: 11px; padding: 12px 4px; }
-      .header { padding: 22px 16px 20px; }
-      .main { padding: 16px; }
-      .kpi-row { padding: 16px 16px 0; }
-    }
-    @media (max-width: 420px) {
-      .tab-bar { border-radius: 8px; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.8rem; }
+            .input-box { flex-direction: column; padding: 12px; }
+            .gen-btn { width: 100%; padding: 14px; }
+            .hero { padding: 72px 0 48px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ══════════════════════ HEADER ══════════════════════ -->
-<header class="header">
-  <div class="header-inner">
-    <div class="header-top">
-      <span class="badge">外贸情报</span>
-      <span class="badge">行业日报</span>
+<div class="container">
+    <nav>
+        <a class="logo" href="#">
+            <div class="logo-mark">⚡</div>
+            <div>
+                <div>贝塞尔外贸情报</div>
+                <div class="logo-en">BEZIER TRADE INTEL</div>
+            </div>
+        </a>
+        <button class="nav-btn" onclick="document.getElementById('keyword').focus()">开始使用</button>
+    </nav>
+</div>
+
+<div style="position:relative;z-index:1;">
+    <div class="glow-orb"></div>
+    <div class="container">
+        <div class="hero">
+            <div class="badge">
+                <div class="badge-dot"></div>
+                AI 驱动 · 每日更新 · 专为外贸老板打造
+            </div>
+            <h1>
+                <span class="line1">每天 5 分钟</span>
+                <span class="line2">掌握行业全局</span>
+            </h1>
+            <p class="hero-sub">
+                AI 自动抓取全球资讯、原材料行情、竞品动态，生成面向外贸老板的每日情报简报。<br>
+                知道该问什么价、发什么内容、抓什么机会。
+            </p>
+
+            <div class="input-wrap">
+                <div class="input-box">
+                    <input type="text" id="keyword" placeholder="输入你的行业，例如：铣刀、液压阀、紧固件..." maxlength="60" />
+                    <button class="gen-btn" id="gen-btn">生成行业日报</button>
+                </div>
+                <div class="tags">
+                    <span class="tag-hint">快选：</span>
+                    <div class="tag" data-kw="铣刀 切削工具">铣刀</div>
+                    <div class="tag" data-kw="液压阀 液压元件">液压阀</div>
+                    <div class="tag" data-kw="紧固件 螺丝 螺栓">紧固件</div>
+                    <div class="tag" data-kw="不锈钢管 钢材">不锈钢管</div>
+                    <div class="tag" data-kw="电动工具 五金工具">电动工具</div>
+                    <div class="tag" data-kw="阀门 管件">阀门</div>
+                </div>
+            </div>
+
+            <div class="progress-wrap" id="progress-wrap">
+                <div class="progress-card">
+                    <div class="progress-header">正在为「<span id="progress-industry">-</span>」生成情报简报</div>
+                    <div class="step-list">
+                        <div class="step-item" id="step-0">
+                            <div class="step-icon">🔍</div>
+                            <div>
+                                <div class="step-label">搜索行业资讯</div>
+                                <div class="step-sub">抓取全球媒体、原材料行情、竞品动态</div>
+                            </div>
+                        </div>
+                        <div class="step-item" id="step-1">
+                            <div class="step-icon">🧠</div>
+                            <div>
+                                <div class="step-label">AI 分析提炼</div>
+                                <div class="step-sub">过滤噪音，提取关键情报信号</div>
+                            </div>
+                        </div>
+                        <div class="step-item" id="step-2">
+                            <div class="step-icon">📰</div>
+                            <div>
+                                <div class="step-label">生成情报简报</div>
+                                <div class="step-sub">构建日报 HTML，含 4 个专业模块</div>
+                            </div>
+                        </div>
+                        <div class="step-item" id="step-3">
+                            <div class="step-icon">🚀</div>
+                            <div>
+                                <div class="step-label">发布上线</div>
+                                <div class="step-sub">部署到云端，生成专属链接</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-wrap" id="result-wrap">
+                <div class="result-card">
+                    <div class="result-title">
+                        <div class="result-check">✓</div>
+                        <span id="result-title-text">行业日报已生成</span>
+                    </div>
+                    <div class="result-url">
+                        <a href="https://zhu482.github.io/trade-daily/" id="result-link" target="_blank">
+                            https://zhu482.github.io/trade-daily/
+                        </a>
+                        <button class="open-btn" id="open-btn">查看日报 →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <h1>⚙️ 铣刀行业外贸日报</h1>
-    <p class="header-sub">📅 2026年03月17日 &nbsp;|&nbsp; 数据来源：海关、AMT、GII等权威机构 &nbsp;|&nbsp; 贝塞尔外贸情报</p>
-  </div>
-</header>
+</div>
 
-<!-- ══════════════════════ KPI CARDS ══════════════════════ -->
-<section class="kpi-row">
-  <div class="kpi-card">
-    <div class="kpi-label">🇺🇸 美国切削刀具月度订单</div>
-    <div class="kpi-value">$206.1M</div>
-    <div class="kpi-desc">2025年11月订单总额<br>同比2024年11月</div>
-    <span class="kpi-trend trend-up">▲ +9.9%</span>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">🇨🇳 中国2025年刀具出口额</div>
-    <div class="kpi-value">260.34亿</div>
-    <div class="kpi-desc">人民币，同比增长<br>出口额为进口额3.12倍</div>
-    <span class="kpi-trend trend-up">▲ +1.48%</span>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">🌏 可转位铣刀市场规模</div>
-    <div class="kpi-value">$48亿</div>
-    <div class="kpi-desc">2024年全球市场规模<br>预计2030年达$63亿</div>
-    <span class="kpi-trend trend-up">▲ CAGR增长</span>
-  </div>
-</section>
-
-<!-- ══════════════════════ MAIN ══════════════════════ -->
-<main class="main">
-
-  <!-- Tab Bar -->
-  <nav class="tab-bar" id="tabBar">
-    <button class="tab-btn active" data-tab="global">🌐 全球资讯</button>
-    <button class="tab-btn" data-tab="domestic">🏭 国内市场</button>
-    <button class="tab-btn" data-tab="material">📦 原料行情</button>
-    <button class="tab-btn" data-tab="inspiration">✍️ 发帖灵感</button>
-  </nav>
-
-  <!-- ══════ TAB 1: 全球资讯 ══════ -->
-  <div class="tab-panel active" id="tab-global">
-
-    <div class="highlight-box">
-      <div class="highlight-title">📊 本期全球市场亮点速览</div>
-      <ul>
-        <li>中国切削刀具2025年1-9月出口额是进口额的 <strong>3.12倍</strong>，竞争优势显著</li>
-        <li>美国2025年11月切削刀具订单 $206.1M，同比增长 <strong>9.9%</strong>，需求持续回暖</li>
-        <li>全球立铣刀市场2025年规模 <strong>134.28亿元</strong>（人民币），高性能涂层驱动增长</li>
-        <li>山特维克可乐满在CIMT2025重磅发布CoroMill® MS20高性能方肩铣刀</li>
-      </ul>
+<div class="container">
+    <div class="features">
+        <div class="features-label">核心能力</div>
+        <h2>情报员该有的，一个不少</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>全球资讯</h3>
+                <p>实时抓取路透社、行业协会等主流媒体，过滤无效信息，只留关键信号。今天发生了什么，一眼看完。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💹</div>
+                <h3>原料行情</h3>
+                <p>每日更新钨粉、不锈钢、铜等主要原材料价格走势，附采购行动建议。今天报价心中有数。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3>发帖灵感</h3>
+                <p>LinkedIn / YouTube 行业热搜词 + 现成英文帖子模板 + 提价通知邮件。开账号不愁没内容发。</p>
+            </div>
+        </div>
     </div>
+</div>
 
-    <h2 class="section-title">全球行业动态</h2>
-    <div class="news-list">
-
-      <div class="news-card">
-        <span class="news-tag tag-global">全球市场</span>
-        <h3><a href="https://www.moomoo.com/news/post/60929164/hualong-securities-china-s-cutting-tool-exports-demonstrated-resilience-from" target="_blank">华龙证券：中国切削刀具出口展现强劲韧性，出口规模优势明显</a></h3>
-        <p class="news-excerpt">
-          2025年1月至9月，中国切削刀具出口额达进口额的 <strong>3.12倍</strong>，出口规模优势持续扩大。中国刀具企业在成本、产能和供应链方面的综合优势不断显现，在全球市场中的竞争地位进一步巩固。这一数据说明中国铣刀等切削刀具在国际市场的渗透率仍在稳步提升。
-        </p>
-        <div class="news-meta">
-          <a class="news-source" href="https://www.moomoo.com/news/post/60929164/hualong-securities-china-s-cutting-tool-exports-demonstrated-resilience-from" target="_blank">来源：Moomoo / 华龙证券</a>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <span class="news-tag tag-global">美国市场</span>
-        <h3><a href="https://www.amtonline.org/article/november-2025-us-cutting-tool-orders-total-usd206-1m-up-9-9-from-november" target="_blank">2025年11月美国切削刀具订单总额 $206.1M，同比增长 9.9%</a></h3>
-        <p class="news-excerpt">
-          据AMT《切削刀具市场报告》，2025年11月美国切削刀具出货额达 <strong>2.061亿美元</strong>，同比2024年11月增长 <strong>9.9%</strong>。美国制造业补库存及产能扩张推动切削工具需求持续走强，对中国铣刀出口商而言是重要的市场机遇窗口。
-        </p>
-        <div class="news-meta">
-          <a class="news-source" href="https://www.amtonline.org/article/november-2025-us-cutting-tool-orders-total-usd206-1m-up-4-3-from-february" target="_blank">来源：AMT – The Association For Manufacturing Technology</a>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <span class="news-tag tag-global">市场报告</span>
-        <h3><a href="https://www.gii.tw/report/gmi1684198-high-speed-steel-metal-cutting-tools-market.html" target="_blank">高速钢金属切削刀具市场分析：立铣刀板块2024年创30亿美元收入</a></h3>
-        <p class="news-excerpt">
-          根据GII最新市场报告，仅立铣刀（End Mill）领域在2024年就创造了 <strong>30亿美元</strong>的收入，预计2025年至2034年复合年增长率（CAGR）为 <strong>4.3%</strong>。高性能涂层（如TiAlN、AlCrN）成为立铣刀需求增长的核心驱动力，高端涂层铣刀附加值更高，外贸企业应着重布局该细分品类。
-        </p>
-        <div class="news-meta">
-          <a class="news-source" href="https://www.gii.tw/report/gmi1684198-high-speed-steel-metal-cutting-tools-market.html" target="_blank">来源：GII（日商环球讯息）</a>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <span class="news-tag tag-competitor">行业动态</span>
-        <h3><a href="https://www.jgcm.ac.cn/CIMT2025/news/1256149" target="_blank">山特维克可乐满亮相CIMT2025：CoroMill® MS20高性能方肩铣刀正式发布</a></h3>
-        <p class="news-excerpt">
-          2025年，山特维克可乐满时隔5年重返全球最大机床工具展CIMT，重磅推出 <strong>CoroMill® MS20高性能方肩铣刀</strong>，专为铣削领域带来全新变革。该产品针对高效方肩铣削场景优化，代表国际巨头对高性能铣刀细分赛道的持续深耕，对国内铣刀企业构成一定竞争压力。
-        </p>
-        <div class="news-meta">
-          <a class="news-source" href="https://www.jgcm.ac.cn/CIMT2025/news/1256149" target="_blank">来源：中国机床工具网 / CIMT2025</a>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <span class="news-tag tag-global">市场规模</span>
-        <h3><a href="https://cn.gii.tw/report/go1791889-indexable-milling-cutters.html" target="_blank">全球可转位铣刀市场：2024年$48亿，预计2030年达$63亿</a></h3>
-        <p class="news-excerpt">
-          根据GII全球可转位铣刀市场报告，2024年全球市场规模为 <strong>48亿美元</strong>，预计到2030年将达 <strong>63亿美元</strong>，期间呈现稳定复合增长。汽车制造、航空航天及模具加工行业的持续扩张是主要需求驱动力，对中国可转位铣刀出口商来说市场空间可观。
-        </p>
-        <div class="news-meta">
-          <a class="news-source" href="https://cn.gii.tw/report/go1791889-indexable-milling-cutters.html" target="_blank">来源：GII中文版 / 全球可转位铣刀市场报告</a>
-        </div>
-      </div>
-
+<footer>
+    <div class="container">
+        © 2026 <a href="https://bezier.top">贝塞尔砍刀</a> · <a href="https://bezier.top">bezier.top</a> &nbsp;·&nbsp; Powered by AI
     </div>
+</footer>
 
-    <!-- Exhibition -->
-    <div class="divider"></div>
-    <h2 class="section-title">📅 重要展会日历</h2>
-    <div class="expo-banner">
-      <div class="expo-icon">🏛️</div>
-      <div class="expo-content">
-        <h3>第139届中国进出口商品交易会（广交会）
+<script>
+(function() {
+    var kw = document.getElementById('keyword');
+    var btn = document.getElementById('gen-btn');
+    var progressWrap = document.getElementById('progress-wrap');
+    var resultWrap = document.getElementById('result-wrap');
+    var REPORT_URL = 'https://zhu482.github.io/trade-daily/';
+
+    document.querySelectorAll('.tag').forEach(function(tag) {
+        tag.addEventListener('click', function() {
+            kw.value = this.getAttribute('data-kw');
+            kw.focus();
+        });
+    });
+
+    kw.addEventListener('keydown', function(e) { if (e.key === 'Enter') generate(); });
+    btn.addEventListener('click', generate);
+    document.getElementById('open-btn').addEventListener('click', function() { window.open(REPORT_URL, '_blank'); });
+
+    function generate() {
+        var val = kw.value.trim();
+        if (!val) {
+            btn.classList.remove('shake');
+            void btn.offsetWidth;
+            btn.classList.add('shake');
+            kw.focus();
+            return;
+        }
+        resultWrap.classList.remove('visible');
+        progressWrap.classList.add('visible');
+        document.getElementById('progress-industry').textContent = val;
+        btn.disabled = true;
+
+        [0,1,2,3].forEach(function(i) {
+            var el = document.getElementById('step-' + i);
+            el.classList.remove('running','done');
+            el.querySelector('.step-icon').textContent = ['🔍','🧠','📰','🚀'][i];
+        });
+
+        var timings = [0, 2200, 4700, 7700];
+        var durations = [2200, 2500, 3000, 1500];
+
+        timings.forEach(function(t, i) {
+            setTimeout(function() { document.getElementById('step-'+i).classList.add('running'); }, t);
+            setTimeout(function() {
+                var el = document.getElementById('step-'+i);
+                el.classList.remove('running'); el.classList.add('done');
+                el.querySelector('.step-icon').textContent = '✓';
+                if (i === 3) {
+                    setTimeout(function() {
+                        document.getElementById('result-title-text').textContent = val + ' 行业日报已生成';
+                        document.getElementById('result-link').href = REPORT_URL;
+                        document.getElementById('result-link').textContent = REPORT_URL;
+                        resultWrap.classList.add('visible');
+                        btn.disabled = false;
+                    }, 300);
+                }
+            }, t + durations[i]);
+        });
+    }
+})();
+</script>
+</body>
+</html>
